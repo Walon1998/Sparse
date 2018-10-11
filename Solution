@@ -1,0 +1,17 @@
+Exercise 2.2. LU decomposition and sparsity.
+a)
+val vector: nnZ(A):
+n>=2: (n-2)*3 + 4
+n=1: 2:
+
+col-ind vector: nnZ(A):
+same as above
+
+row-prt vector: n
+
+Insgesamt: 2*nnz(A)+n
+
+
+d) FullPIvLU = O(n^3)
+
+SparseLU: From O(nnz^(3/2)) to O(nnz^(5/2)) according to lecture
