@@ -88,24 +88,24 @@ int main() {
         // dense LU decomposition
         Eigen::MatrixXd D(S);
 
-        std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-        start = std::chrono::high_resolution_clock::now();
-        Sparesolver.compute(S);
-        end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(
-                end - start);
+//        std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+//        start = std::chrono::high_resolution_clock::now();
+//        Sparesolver.compute(S);
+//        end = std::chrono::high_resolution_clock::now();
+//        std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(
+//                end - start);
+//
+//        runtimeSparse.emplace_back(time_span.count());
+//
+//
+//        start = std::chrono::high_resolution_clock::now();
+//        Densesolver.compute(D);
+//        end = std::chrono::high_resolution_clock::now();
+//        time_span = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
+//        runtimeDense.emplace_back(time_span.count());
 
-        runtimeSparse.emplace_back(time_span.count());
-
-
-        start = std::chrono::high_resolution_clock::now();
-        Densesolver.compute(D);
-        end = std::chrono::high_resolution_clock::now();
-        time_span = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
-        runtimeDense.emplace_back(time_span.count());
-
-//        runtimeSparse.emplace_back(Runtime(Sparesolver.compute(S)));
-//        runtimeDense.emplace_back(Runtime(Densesolver.compute(D)));
+       runtimeSparse.emplace_back(Runtime([S,&Sparesolver](){Sparesolver.compute(S);}));
+        runtimeDense.emplace_back(Runtime([D,&Densesolver](){Densesolver.compute(D);}));
     }
 
 
